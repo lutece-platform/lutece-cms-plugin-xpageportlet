@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document>
+	<properties>
+		<title>Plugin XPage Portlet</title>
+	</properties>
+	<body>
+		<section name="Plugin XPage Portlet">
+			<subsection name="Introduction">
+				<p>
+					Ce plugin permet d'afficher le contenu d'une XPage dans une rubrique.
+				</p>
+			</subsection>
+		</section>
+	</body>
+</document>
