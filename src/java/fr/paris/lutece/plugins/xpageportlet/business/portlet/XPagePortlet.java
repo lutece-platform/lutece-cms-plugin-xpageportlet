@@ -104,6 +104,9 @@ public class XPagePortlet extends Portlet
                 {
                     strXPageContent = message.getText( request.getLocale(  ) );
                 }
+
+                // Delete message in session
+                SiteMessageService.cleanMessageSession( request );
             }
 
             if ( page != null )
