@@ -58,15 +58,10 @@ import javax.servlet.http.HttpServletRequest;
 
 
 /**
- *
- * WhatsNewPortletJspBean
- *
+ * XPage Portlet Jsp Bean
  */
 public class XPagePortletJspBean extends PortletJspBean
 {
-    // Right
-    public static final String RIGHT_MANAGE_ADMIN_SITE = "CORE_ADMIN_SITE";
-
     // MARKS
     private static final String MARK_XPAGE_PORTLET = "xPagePortlet";
     private static final String MARK_XPAGE_APPLICATIONS = "xPageApplications";
@@ -74,6 +69,8 @@ public class XPagePortletJspBean extends PortletJspBean
     // PARAMETERS
     private static final String PARAMETER_PARAM_KEY = "paramKey";
     private static final String PARAMETER_PARAM_VALUE = "paramValue";
+    private static final String PARAMETER_PARAM_XPAGE_NAME = "XPageName";
+    private static final String PARAMETER_PARAM_NB_PARAMS = "nbParams";
 
     // SERVICES
     private IXPagePortletService _xPagePorletService = SpringContextService.getBean( XPagePortletService.BEAN_SERVICE );
@@ -129,12 +126,12 @@ public class XPagePortletJspBean extends PortletJspBean
     @Override
     public String doCreate( HttpServletRequest request )
     {
-        String strUrl = StringUtils.EMPTY;
+        String strUrl;
         String strIdPage = request.getParameter( PARAMETER_PAGE_ID );
 
         if ( StringUtils.isNotBlank( strIdPage ) && StringUtils.isNumeric( strIdPage ) )
         {
-            Portlet portlet = new XPagePortlet(  );
+            XPagePortlet portlet = new XPagePortlet(  );
 
             int nIdPage = Integer.parseInt( strIdPage );
             portlet.setPageId( nIdPage );
@@ -144,7 +141,8 @@ public class XPagePortletJspBean extends PortletJspBean
 
             if ( StringUtils.isBlank( strUrl ) )
             {
-                populate( portlet, request );
+                portlet.setXPageName( request.getParameter(PARAMETER_PARAM_XPAGE_NAME));
+                portlet.setNbParams( Integer.parseInt( request.getParameter(PARAMETER_PARAM_NB_PARAMS)));
 
                 // Creating portlet
                 _xPagePorletService.create( portlet );
@@ -160,7 +158,7 @@ public class XPagePortletJspBean extends PortletJspBean
 
         return strUrl;
     }
-
+    
     /**
      * {@inheritDoc}
      */
@@ -173,7 +171,7 @@ public class XPagePortletJspBean extends PortletJspBean
         if ( StringUtils.isNotBlank( strIdPortlet ) && StringUtils.isNumeric( strIdPortlet ) )
         {
             int nIdPortlet = Integer.parseInt( strIdPortlet );
-            Portlet portlet = _xPagePorletService.getPortlet( nIdPortlet );
+            XPagePortlet portlet = _xPagePorletService.getPortlet( nIdPortlet );
 
             if ( portlet != null )
             {
@@ -182,8 +180,9 @@ public class XPagePortletJspBean extends PortletJspBean
 
                 if ( StringUtils.isBlank( strUrl ) )
                 {
-                    populate( portlet, request );
-                    this.setPortletData( request, portlet );
+                    portlet.setXPageName( request.getParameter(PARAMETER_PARAM_XPAGE_NAME));
+                    portlet.setNbParams( Integer.parseInt( request.getParameter(PARAMETER_PARAM_NB_PARAMS)));
+                    setPortletData( request, portlet );
 
                     // Creating portlet
                     _xPagePorletService.update( portlet );
