@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2002-2017, Mairie de Paris
+ * Copyright (c) 2002-2020, Mairie de Paris
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -38,7 +38,6 @@ import fr.paris.lutece.portal.business.portlet.PortletHome;
 import fr.paris.lutece.portal.business.portlet.PortletTypeHome;
 import fr.paris.lutece.portal.service.spring.SpringContextService;
 
-
 /**
  *
  * WhatsNewPortletHome
@@ -53,20 +52,21 @@ public class XPagePortletHome extends PortletHome
 
     /**
      * Constructor
-    */
-    public XPagePortletHome(  )
+     */
+    public XPagePortletHome( )
     {
     }
 
     /**
      * Returns the instance of the WhatsNewPortletHome singleton
+     * 
      * @return the WhatsNewPortletHome instance
      */
-    public static XPagePortletHome getInstance(  )
+    public static XPagePortletHome getInstance( )
     {
         if ( _singleton == null )
         {
-            _singleton = new XPagePortletHome(  );
+            _singleton = new XPagePortletHome( );
         }
 
         return _singleton;
@@ -76,9 +76,9 @@ public class XPagePortletHome extends PortletHome
      * {@inheritDoc}
      */
     @Override
-    public String getPortletTypeId(  )
+    public String getPortletTypeId( )
     {
-        String strCurrentClassName = this.getClass(  ).getName(  );
+        String strCurrentClassName = this.getClass( ).getName( );
 
         return PortletTypeHome.getPortletTypeId( strCurrentClassName );
     }
@@ -87,7 +87,7 @@ public class XPagePortletHome extends PortletHome
      * {@inheritDoc}
      */
     @Override
-    public IPortletInterfaceDAO getDAO(  )
+    public IPortletInterfaceDAO getDAO( )
     {
         return SpringContextService.getBean( BEAN_DAO );
     }

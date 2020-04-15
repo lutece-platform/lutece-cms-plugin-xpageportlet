@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2002-2017, Mairie de Paris
+ * Copyright (c) 2002-2020, Mairie de Paris
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -56,7 +56,6 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-
 /**
  * XPage Portlet Jsp Bean
  */
@@ -84,12 +83,12 @@ public class XPagePortletJspBean extends PortletJspBean
         String strPageId = request.getParameter( PARAMETER_PAGE_ID );
         String strPortletTypeId = request.getParameter( PARAMETER_PORTLET_TYPE_ID );
 
-        Map<String, Object> model = new HashMap<String, Object>(  );
-        model.put( MARK_XPAGE_APPLICATIONS, getXPageApplications(  ) );
+        Map<String, Object> model = new HashMap<String, Object>( );
+        model.put( MARK_XPAGE_APPLICATIONS, getXPageApplications( ) );
 
         HtmlTemplate template = getCreateTemplate( strPageId, strPortletTypeId, model );
 
-        return template.getHtml(  );
+        return template.getHtml( );
     }
 
     /**
@@ -107,13 +106,13 @@ public class XPagePortletJspBean extends PortletJspBean
 
             if ( portlet != null )
             {
-                Map<String, Object> model = new HashMap<String, Object>(  );
+                Map<String, Object> model = new HashMap<String, Object>( );
                 model.put( MARK_XPAGE_PORTLET, portlet );
-                model.put( MARK_XPAGE_APPLICATIONS, getXPageApplications(  ) );
+                model.put( MARK_XPAGE_APPLICATIONS, getXPageApplications( ) );
 
                 HtmlTemplate template = getModifyTemplate( portlet, model );
 
-                return template.getHtml(  );
+                return template.getHtml( );
             }
         }
 
@@ -131,7 +130,7 @@ public class XPagePortletJspBean extends PortletJspBean
 
         if ( StringUtils.isNotBlank( strIdPage ) && StringUtils.isNumeric( strIdPage ) )
         {
-            XPagePortlet portlet = new XPagePortlet(  );
+            XPagePortlet portlet = new XPagePortlet( );
 
             int nIdPage = Integer.parseInt( strIdPage );
             portlet.setPageId( nIdPage );
@@ -141,14 +140,14 @@ public class XPagePortletJspBean extends PortletJspBean
 
             if ( StringUtils.isBlank( strUrl ) )
             {
-                portlet.setXPageName( request.getParameter(PARAMETER_PARAM_XPAGE_NAME));
-                portlet.setNbParams( Integer.parseInt( request.getParameter(PARAMETER_PARAM_NB_PARAMS)));
+                portlet.setXPageName( request.getParameter( PARAMETER_PARAM_XPAGE_NAME ) );
+                portlet.setNbParams( Integer.parseInt( request.getParameter( PARAMETER_PARAM_NB_PARAMS ) ) );
 
                 // Creating portlet
                 _xPagePorletService.create( portlet );
 
                 // Displays the page with the new Portlet
-                strUrl = getPageUrl( portlet.getPageId(  ) );
+                strUrl = getPageUrl( portlet.getPageId( ) );
             }
         }
         else
@@ -158,7 +157,7 @@ public class XPagePortletJspBean extends PortletJspBean
 
         return strUrl;
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -180,15 +179,15 @@ public class XPagePortletJspBean extends PortletJspBean
 
                 if ( StringUtils.isBlank( strUrl ) )
                 {
-                    portlet.setXPageName( request.getParameter(PARAMETER_PARAM_XPAGE_NAME));
-                    portlet.setNbParams( Integer.parseInt( request.getParameter(PARAMETER_PARAM_NB_PARAMS)));
+                    portlet.setXPageName( request.getParameter( PARAMETER_PARAM_XPAGE_NAME ) );
+                    portlet.setNbParams( Integer.parseInt( request.getParameter( PARAMETER_PARAM_NB_PARAMS ) ) );
                     setPortletData( request, portlet );
 
                     // Creating portlet
                     _xPagePorletService.update( portlet );
 
                     // Displays the page with the new Portlet
-                    strUrl = getPageUrl( portlet.getPageId(  ) );
+                    strUrl = getPageUrl( portlet.getPageId( ) );
                 }
             }
         }
@@ -202,15 +201,16 @@ public class XPagePortletJspBean extends PortletJspBean
 
     /**
      * Get the list of xpage applications
+     * 
      * @return a {@link ReferenceList}
      */
-    private ReferenceList getXPageApplications(  )
+    private ReferenceList getXPageApplications( )
     {
-        ReferenceList listXPageApp = new ReferenceList(  );
+        ReferenceList listXPageApp = new ReferenceList( );
 
-        for ( XPageApplicationEntry entry : XPageAppService.getXPageApplicationsList(  ) )
+        for ( XPageApplicationEntry entry : XPageAppService.getXPageApplicationsList( ) )
         {
-            listXPageApp.addItem( entry.getId(  ), entry.getId(  ) );
+            listXPageApp.addItem( entry.getId( ), entry.getId( ) );
         }
 
         return listXPageApp;
@@ -218,17 +218,20 @@ public class XPagePortletJspBean extends PortletJspBean
 
     /**
      * Set the portlet data
-     * @param request the HTTP request
-     * @param portlet the portlet
+     * 
+     * @param request
+     *            the HTTP request
+     * @param portlet
+     *            the portlet
      */
     private void setPortletData( HttpServletRequest request, Portlet portlet )
     {
         XPagePortlet xPagePortlet = (XPagePortlet) portlet;
-        Map<String, List<String>> map = new HashMap<String, List<String>>(  );
+        Map<String, List<String>> map = new HashMap<String, List<String>>( );
 
-        if ( xPagePortlet.getNbParams(  ) > 0 )
+        if ( xPagePortlet.getNbParams( ) > 0 )
         {
-            for ( int nIndex = 1; nIndex <= xPagePortlet.getNbParams(  ); nIndex++ )
+            for ( int nIndex = 1; nIndex <= xPagePortlet.getNbParams( ); nIndex++ )
             {
                 String strParamKey = request.getParameter( PARAMETER_PARAM_KEY + nIndex );
                 String strParamValue = request.getParameter( PARAMETER_PARAM_VALUE + nIndex );
@@ -239,7 +242,7 @@ public class XPagePortletJspBean extends PortletJspBean
 
                     if ( listValues == null )
                     {
-                        listValues = new ArrayList<String>(  );
+                        listValues = new ArrayList<String>( );
                     }
 
                     listValues.add( strParamValue );

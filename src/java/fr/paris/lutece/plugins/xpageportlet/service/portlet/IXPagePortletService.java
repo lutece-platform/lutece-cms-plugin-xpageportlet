@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2002-2017, Mairie de Paris
+ * Copyright (c) 2002-2020, Mairie de Paris
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -36,7 +36,6 @@ package fr.paris.lutece.plugins.xpageportlet.service.portlet;
 import fr.paris.lutece.plugins.xpageportlet.business.portlet.XPagePortlet;
 import fr.paris.lutece.portal.business.portlet.Portlet;
 
-
 /**
  *
  * IXpagePortletService
@@ -46,26 +45,34 @@ public interface IXPagePortletService
 {
     /**
      * Get the portlet
-     * @param nIdPortlet the id portlet
+     * 
+     * @param nIdPortlet
+     *            the id portlet
      * @return a {@link XPagePortlet}
      */
     XPagePortlet getPortlet( int nIdPortlet );
 
     /**
      * Create a new portlet
-     * @param portlet a portlet
+     * 
+     * @param portlet
+     *            a portlet
      */
     void create( Portlet portlet );
 
     /**
      * Update a portlet
-     * @param portlet the portlet
+     * 
+     * @param portlet
+     *            the portlet
      */
     void update( Portlet portlet );
 
     /**
      * Remove a portlet
-     * @param portlet the portlet
+     * 
+     * @param portlet
+     *            the portlet
      */
     void remove( Portlet portlet );
 }

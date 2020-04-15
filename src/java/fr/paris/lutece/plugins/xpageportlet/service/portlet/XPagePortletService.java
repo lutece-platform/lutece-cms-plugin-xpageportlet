@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2002-2017, Mairie de Paris
+ * Copyright (c) 2002-2020, Mairie de Paris
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -37,7 +37,6 @@ import fr.paris.lutece.plugins.xpageportlet.business.portlet.XPagePortlet;
 import fr.paris.lutece.plugins.xpageportlet.business.portlet.XPagePortletHome;
 import fr.paris.lutece.portal.business.portlet.Portlet;
 
-
 /**
  *
  * XPagePortletService
@@ -62,7 +61,7 @@ public class XPagePortletService implements IXPagePortletService
     @Override
     public void create( Portlet portlet )
     {
-        XPagePortletHome.getInstance(  ).create( portlet );
+        XPagePortletHome.getInstance( ).create( portlet );
     }
 
     /**
@@ -71,7 +70,7 @@ public class XPagePortletService implements IXPagePortletService
     @Override
     public void update( Portlet portlet )
     {
-        XPagePortletHome.getInstance(  ).update( portlet );
+        XPagePortletHome.getInstance( ).update( portlet );
     }
 
     /**
@@ -80,6 +79,6 @@ public class XPagePortletService implements IXPagePortletService
     @Override
     public void remove( Portlet portlet )
     {
-        XPagePortletHome.getInstance(  ).remove( portlet );
+        XPagePortletHome.getInstance( ).remove( portlet );
     }
 }

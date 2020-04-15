@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2002-2017, Mairie de Paris
+ * Copyright (c) 2002-2020, Mairie de Paris
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -56,7 +56,6 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-
 /**
  *
  * XPagePortlet
@@ -77,7 +76,7 @@ public class XPagePortlet extends Portlet
     @Override
     public String getXml( HttpServletRequest request )
     {
-        StringBuffer sbXml = new StringBuffer(  );
+        StringBuffer sbXml = new StringBuffer( );
         XmlUtil.addElement( sbXml, TAG_XPAGE_NAME, _strXPageName );
 
         XPageApplicationEntry entry = XPageAppService.getApplicationEntry( _strXPageName );
@@ -90,19 +89,19 @@ public class XPagePortlet extends Portlet
 
             try
             {
-                page = XPageAppService.getApplicationInstance( entry ).getPage( xPageRequest, PortalJspBean.MODE_HTML, entry.getPlugin(  ) );
+                page = XPageAppService.getApplicationInstance( entry ).getPage( xPageRequest, PortalJspBean.MODE_HTML, entry.getPlugin( ) );
             }
-            catch ( UserNotSignedException e )
+            catch( UserNotSignedException e )
             {
-                strXPageContent = I18nService.getLocalizedString( MESSAGE_USER_NOT_SIGNED, request.getLocale(  ) );
+                strXPageContent = I18nService.getLocalizedString( MESSAGE_USER_NOT_SIGNED, request.getLocale( ) );
             }
-            catch ( SiteMessageException e )
+            catch( SiteMessageException e )
             {
                 SiteMessage message = SiteMessageService.getMessage( request );
 
                 if ( message != null )
                 {
-                    strXPageContent = message.getText( request.getLocale(  ) );
+                    strXPageContent = message.getText( request.getLocale( ) );
                 }
 
                 // Delete message in session
@@ -111,7 +110,7 @@ public class XPagePortlet extends Portlet
 
             if ( page != null )
             {
-                strXPageContent = page.getContent(  );
+                strXPageContent = page.getContent( );
             }
 
             XmlUtil.addElementHtml( sbXml, TAG_XPAGE_CONTENT, strXPageContent );
@@ -124,24 +123,24 @@ public class XPagePortlet extends Portlet
      * {@inheritDoc}
      */
     @Override
-    public String getXmlDocument( HttpServletRequest request )
-        throws SiteMessageException
+    public String getXmlDocument( HttpServletRequest request ) throws SiteMessageException
     {
-        return XmlUtil.getXmlHeader(  ) + getXml( request );
+        return XmlUtil.getXmlHeader( ) + getXml( request );
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public void remove(  )
+    public void remove( )
     {
         IXPagePortletService xPagePortletService = SpringContextService.getBean( XPagePortletService.BEAN_SERVICE );
         xPagePortletService.remove( this );
     }
 
     /**
-     * @param strXPageName the strXPageName to set
+     * @param strXPageName
+     *            the strXPageName to set
      */
     public void setXPageName( String strXPageName )
     {
@@ -151,13 +150,14 @@ public class XPagePortlet extends Portlet
     /**
      * @return the strXPageName
      */
-    public String getXPageName(  )
+    public String getXPageName( )
     {
         return _strXPageName;
     }
 
     /**
-     * @param nNbParams the _nNbParams to set
+     * @param nNbParams
+     *            the _nNbParams to set
      */
     public void setNbParams( int nNbParams )
     {
@@ -167,13 +167,14 @@ public class XPagePortlet extends Portlet
     /**
      * @return the _nNbParams
      */
-    public int getNbParams(  )
+    public int getNbParams( )
     {
         return _nNbParams;
     }
 
     /**
-     * @param mapParameters the mapParameters to set
+     * @param mapParameters
+     *            the mapParameters to set
      */
     public void setMapParameters( Map<String, List<String>> mapParameters )
     {
@@ -183,7 +184,7 @@ public class XPagePortlet extends Portlet
     /**
      * @return the mapParameters
      */
-    public Map<String, List<String>> getMapParameters(  )
+    public Map<String, List<String>> getMapParameters( )
     {
         return _mapParameters;
     }

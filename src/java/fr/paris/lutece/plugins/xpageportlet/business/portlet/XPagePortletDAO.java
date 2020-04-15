@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2002-2017, Mairie de Paris
+ * Copyright (c) 2002-2020, Mairie de Paris
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -43,7 +43,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-
 /**
  *
  * XPagePortletDAO
@@ -72,12 +71,12 @@ public final class XPagePortletDAO implements IPortletInterfaceDAO
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_INSERT );
         int nIndex = 1;
 
-        daoUtil.setInt( nIndex++, xPagePortlet.getId(  ) );
-        daoUtil.setString( nIndex++, xPagePortlet.getXPageName(  ) );
-        daoUtil.setInt( nIndex++, xPagePortlet.getNbParams(  ) );
+        daoUtil.setInt( nIndex++, xPagePortlet.getId( ) );
+        daoUtil.setString( nIndex++, xPagePortlet.getXPageName( ) );
+        daoUtil.setInt( nIndex++, xPagePortlet.getNbParams( ) );
 
-        daoUtil.executeUpdate(  );
-        daoUtil.free(  );
+        daoUtil.executeUpdate( );
+        daoUtil.free( );
 
         insertParams( xPagePortlet );
     }
@@ -91,8 +90,8 @@ public final class XPagePortletDAO implements IPortletInterfaceDAO
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_DELETE );
         daoUtil.setInt( 1, nIdPortlet );
 
-        daoUtil.executeUpdate(  );
-        daoUtil.free(  );
+        daoUtil.executeUpdate( );
+        daoUtil.free( );
 
         // Remove the parameters
         deleteParameters( nIdPortlet );
@@ -106,20 +105,20 @@ public final class XPagePortletDAO implements IPortletInterfaceDAO
     {
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECT );
         daoUtil.setInt( 1, nIdPortlet );
-        daoUtil.executeQuery(  );
+        daoUtil.executeQuery( );
 
-        XPagePortlet xPagePortlet = new XPagePortlet(  );
+        XPagePortlet xPagePortlet = new XPagePortlet( );
 
         int nIndex = 1;
 
-        if ( daoUtil.next(  ) )
+        if ( daoUtil.next( ) )
         {
             xPagePortlet.setId( daoUtil.getInt( nIndex++ ) );
             xPagePortlet.setXPageName( daoUtil.getString( nIndex++ ) );
             xPagePortlet.setNbParams( daoUtil.getInt( nIndex++ ) );
         }
 
-        daoUtil.free(  );
+        daoUtil.free( );
 
         xPagePortlet.setMapParameters( loadParameters( nIdPortlet ) );
 
@@ -137,33 +136,35 @@ public final class XPagePortletDAO implements IPortletInterfaceDAO
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_UPDATE );
         int nIndex = 1;
 
-        daoUtil.setString( nIndex++, xPagePortlet.getXPageName(  ) );
-        daoUtil.setInt( nIndex++, xPagePortlet.getNbParams(  ) );
+        daoUtil.setString( nIndex++, xPagePortlet.getXPageName( ) );
+        daoUtil.setInt( nIndex++, xPagePortlet.getNbParams( ) );
 
-        daoUtil.setInt( nIndex++, xPagePortlet.getId(  ) );
+        daoUtil.setInt( nIndex++, xPagePortlet.getId( ) );
 
-        daoUtil.executeUpdate(  );
-        daoUtil.free(  );
+        daoUtil.executeUpdate( );
+        daoUtil.free( );
 
         // First delete the parameters
-        deleteParameters( portlet.getId(  ) );
+        deleteParameters( portlet.getId( ) );
         // Then insert the parameters
         insertParams( xPagePortlet );
     }
 
     /**
      * Load the parameters
-     * @param nIdPortlet the id portlet
+     * 
+     * @param nIdPortlet
+     *            the id portlet
      * @return the parameters
      */
     private Map<String, List<String>> loadParameters( int nIdPortlet )
     {
-        Map<String, List<String>> map = new HashMap<String, List<String>>(  );
+        Map<String, List<String>> map = new HashMap<String, List<String>>( );
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECT_PARAMS );
         daoUtil.setInt( 1, nIdPortlet );
-        daoUtil.executeQuery(  );
+        daoUtil.executeQuery( );
 
-        while ( daoUtil.next(  ) )
+        while ( daoUtil.next( ) )
         {
             int nIndex = 1;
             String strKey = daoUtil.getString( nIndex++ );
@@ -172,43 +173,45 @@ public final class XPagePortletDAO implements IPortletInterfaceDAO
 
             if ( listValues == null )
             {
-                listValues = new ArrayList<String>(  );
+                listValues = new ArrayList<String>( );
             }
 
             listValues.add( strValue );
             map.put( strKey, listValues );
         }
 
-        daoUtil.free(  );
+        daoUtil.free( );
 
         return map;
     }
 
     /**
      * Insert parameters
-     * @param xPagePortlet the portlet
+     * 
+     * @param xPagePortlet
+     *            the portlet
      */
     private synchronized void insertParams( XPagePortlet xPagePortlet )
     {
-        Map<String, List<String>> mapParams = xPagePortlet.getMapParameters(  );
+        Map<String, List<String>> mapParams = xPagePortlet.getMapParameters( );
 
         if ( mapParams != null )
         {
-            for ( Entry<String, List<String>> param : mapParams.entrySet(  ) )
+            for ( Entry<String, List<String>> param : mapParams.entrySet( ) )
             {
-                String strParamKey = param.getKey(  );
+                String strParamKey = param.getKey( );
 
-                for ( String strParamValue : param.getValue(  ) )
+                for ( String strParamValue : param.getValue( ) )
                 {
                     DAOUtil daoUtil = new DAOUtil( SQL_QUERY_INSERT_PARAMS );
                     int nIndex = 1;
 
-                    daoUtil.setInt( nIndex++, xPagePortlet.getId(  ) );
+                    daoUtil.setInt( nIndex++, xPagePortlet.getId( ) );
                     daoUtil.setString( nIndex++, strParamKey );
                     daoUtil.setString( nIndex++, strParamValue );
 
-                    daoUtil.executeUpdate(  );
-                    daoUtil.free(  );
+                    daoUtil.executeUpdate( );
+                    daoUtil.free( );
                 }
             }
         }
@@ -216,14 +219,16 @@ public final class XPagePortletDAO implements IPortletInterfaceDAO
 
     /**
      * Delete the parameters
-     * @param nIdPortlet the id portlet
+     * 
+     * @param nIdPortlet
+     *            the id portlet
      */
     private void deleteParameters( int nIdPortlet )
     {
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_DELETE_PARAMS );
         daoUtil.setInt( 1, nIdPortlet );
 
-        daoUtil.executeUpdate(  );
-        daoUtil.free(  );
+        daoUtil.executeUpdate( );
+        daoUtil.free( );
     }
 }

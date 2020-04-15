@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2002-2017, Mairie de Paris
+ * Copyright (c) 2002-2020, Mairie de Paris
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -43,11 +43,9 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
 
-
 /**
  *
- * XPageHttpServletRequest
- * This wrapper allows the request to have additional parameters.
+ * XPageHttpServletRequest This wrapper allows the request to have additional parameters.
  *
  */
 public class XPagePortletHttpServletRequest extends HttpServletRequestWrapper
@@ -56,8 +54,11 @@ public class XPagePortletHttpServletRequest extends HttpServletRequestWrapper
 
     /**
      * Constructor
-     * @param request the HTTP request
-     * @param mapParameters the map parameters
+     * 
+     * @param request
+     *            the HTTP request
+     * @param mapParameters
+     *            the map parameters
      */
     public XPagePortletHttpServletRequest( HttpServletRequest request, Map<String, List<String>> mapParameters )
     {
@@ -79,7 +80,7 @@ public class XPagePortletHttpServletRequest extends HttpServletRequestWrapper
             {
                 List<String> listParameters = _mapParameters.get( strName );
 
-                if ( ( listParameters != null ) && ( listParameters.size(  ) == 1 ) )
+                if ( ( listParameters != null ) && ( listParameters.size( ) == 1 ) )
                 {
                     strParameter = listParameters.get( 0 );
                 }
@@ -93,12 +94,12 @@ public class XPagePortletHttpServletRequest extends HttpServletRequestWrapper
      * {@inheritDoc}
      */
     @Override
-    public String[] getParameterValues( String strName )
+    public String [ ] getParameterValues( String strName )
     {
-        List<String> listAllParamValues = new ArrayList<String>(  );
+        List<String> listAllParamValues = new ArrayList<String>( );
 
         // Get parameter values from HTTP request
-        String[] paramValues = super.getParameterValues( strName );
+        String [ ] paramValues = super.getParameterValues( strName );
 
         if ( paramValues != null )
         {
@@ -110,16 +111,16 @@ public class XPagePortletHttpServletRequest extends HttpServletRequestWrapper
         {
             List<String> listParamValues = _mapParameters.get( strName );
 
-            if ( ( listParamValues != null ) && !listParamValues.isEmpty(  ) )
+            if ( ( listParamValues != null ) && !listParamValues.isEmpty( ) )
             {
                 listAllParamValues.addAll( listParamValues );
             }
         }
 
         // Returns null if the list is empty
-        if ( !listAllParamValues.isEmpty(  ) )
+        if ( !listAllParamValues.isEmpty( ) )
         {
-            return listAllParamValues.toArray( new String[] {  } );
+            return listAllParamValues.toArray( new String [ ] { } );
         }
 
         return null;
