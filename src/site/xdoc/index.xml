@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document>
-	<properties>
-		<title>Plugin XPage Portlet</title>
-	</properties>
-	<body>
-		<section name="Plugin XPage Portlet">
-			<subsection name="Introduction">
-				<p>
-					This plugin is used to display the content of a XPage into a portlet.
-				</p>
-			</subsection>
-		</section>
-	</body>
+    <properties>
+        <title>Plugin XPage Portlet</title>
+    </properties>
+    <body>
+        <section name="Plugin XPage Portlet">
+            <subsection name="Introduction">
+                <p>
+                    This plugin is used to display the content of a XPage into a portlet.
+                </p>
+            </subsection>
+            <subsection name="Usage">
+                <p>
+                    Add an XPage Portlet to your page in the Site Administration.
+                    Then select in the portlet configuration the XPage you want to display.
+                </p>
+            </subsection>
+        </section>
+    </body>
 </document>

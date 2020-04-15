@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document>
-	<properties>
-		<title>Plugin XPage Portlet</title>
-	</properties>
-	<body>
-		<section name="Plugin XPage Portlet">
-			<subsection name="Introduction">
-				<p>
-					Ce plugin permet d'afficher le contenu d'une XPage dans une rubrique.
-				</p>
-			</subsection>
-		</section>
-	</body>
+    <properties>
+        <title>Plugin XPage Portlet</title>
+    </properties>
+    <body>
+        <section name="Plugin XPage Portlet">
+            <subsection name="Introduction">
+                <p>
+                    Ce plugin permet d'afficher le contenu d'une XPage dans une rubrique.
+                </p>
+            </subsection>
+            <subsection name="Usage">
+                <p>
+                    Ajouter une rubrique XPage dans votre page dans l'Administration du Site.
+                    Puis sélectionner dans la configuration de la rubrique, la XPage que vous souhaitez
+                    afficher.
+                </p>
+            </subsection>
+        </section>
+    </body>
 </document>

@@ -7,11 +7,11 @@
 
 ## Introduction
 
-This plugin is used to display the content of a XPage into a portlet.
+Ce plugin permet d'afficher le contenu d'une XPage dans une rubrique.
 
 ## Usage
 
-Add an XPage Portlet to your page in the Site Administration. Then select in the portlet configuration the XPage you want to display.
+Ajouter une rubrique XPage dans votre page dans l'Administration du Site. Puis sélectionner dans la configuration de la rubrique, la XPage que vous souhaitezafficher.
 
 
 [Maven documentation and reports](https://dev.lutece.paris.fr/plugins/plugin-xpageportlet/)
