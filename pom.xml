@@ -8,7 +8,7 @@
     <groupId>fr.paris.lutece.plugins</groupId>
     <artifactId>plugin-xpageportlet</artifactId>
     <packaging>lutece-plugin</packaging>
-    <version>1.0.2-SNAPSHOT</version>
+    <version>1.0.2</version>
     <name>Lutece xpage portlet plugin</name>
     <repositories>
         <repository>
@@ -43,5 +43,6 @@
         <connection>scm:git:https://github.com/lutece-platform/lutece-cms-plugin-xpageportlet.git</connection>
         <developerConnection>scm:git:https://github.com/lutece-platform/lutece-cms-plugin-xpageportlet.git</developerConnection>
         <url>https://github.com/lutece-platform/lutece-cms-plugin-xpageportlet.git</url>
-    </scm>
+      <tag>lutece-cms-plugin-xpageportlet-1.0.2</tag>
+  </scm>
 </project>
