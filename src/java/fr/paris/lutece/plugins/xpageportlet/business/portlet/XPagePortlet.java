@@ -82,7 +82,7 @@ public class XPagePortlet extends Portlet
 
         XPageApplicationEntry entry = XPageAppService.getApplicationEntry( _strXPageName );
 
-        if ( ( entry != null ) && ( entry.getApplication(  ) != null ) && ( request != null ) )
+        if ( ( entry != null ) && ( XPageAppService.getApplicationInstance( entry ) != null ) && ( request != null ) )
         {
             HttpServletRequest xPageRequest = new XPagePortletHttpServletRequest( request, _mapParameters );
             String strXPageContent = StringUtils.EMPTY;
@@ -90,7 +90,7 @@ public class XPagePortlet extends Portlet
 
             try
             {
-                page = entry.getApplication(  ).getPage( xPageRequest, PortalJspBean.MODE_HTML, entry.getPlugin(  ) );
+                page = XPageAppService.getApplicationInstance( entry ).getPage( xPageRequest, PortalJspBean.MODE_HTML, entry.getPlugin(  ) );
             }
             catch ( UserNotSignedException e )
             {
